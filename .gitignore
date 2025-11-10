@@ -1,0 +1,27 @@
+# Virtual environment
+venv/
+__pycache__/
+
+# IDE
+.idea/
+.vscode/
+
+# Jupyter notebooks
+*.ipynb
+
+# Data files
+*.dat
+*.db
+*.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+
+# Logs
+*.log
