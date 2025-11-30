@@ -4,13 +4,13 @@ from firepoint import Fire
 import utils
 
 
-maps = {1: '🟩',
+maps = {1: '🌳',
         2: '🚁',
         3: '🔥',
         4: '🟦',
         5: '🟫',
         6: '🏠',
-        7: '🚑',
+        7: '✈️',
         8: '☁️',
         9: '🛠️',
         }
@@ -30,6 +30,7 @@ class Field:
         self.hel_y = 10
         self.cell_under_hel = 6
         self.field[10][10] = 6
+        self.trees_burned = 0
 
     def gen_forest(self):                                   # количество вызовов функции вынести в main.py
         rnx, rny = utils.rand(self.x, self.y)
@@ -70,14 +71,16 @@ class Field:
                 x, y = fire.coord_flame()
                 self.field[y][x] = 5                        # удаляем дерево с карты
                 self.list_of_fire.remove(fire)              # удаляем огонь из списка
+                self.trees_burned += 1
 
     def move_helicopter(self, dx, dy):
-        if (dx != 0 or dy != 0) and 0 <= dy + self.hel_y < self.y and 0 <= dx + self.hel_x < self.x:
+        if  0 <= dy + self.hel_y < self.y and 0 <= dx + self.hel_x < self.x:
             self.field[self.hel_y][self.hel_x] = self.cell_under_hel
             self.hel_x += dx
             self.hel_y += dy
             self.cell_under_hel = self.field[self.hel_y][self.hel_x]
             self.field[self.hel_y][self.hel_x] = 2
+
 
     def show_field(self, cloud):
         print('🟨' * (self.x + 2))
@@ -97,7 +100,7 @@ class Field:
                 elif self.field[i][j] == 3:
                     print('🔥', end='')
                 elif self.field[i][j] == 7:
-                    print('🚑', end='')
+                    print('✈️', end='')
                 elif self.field[i][j] == 6:
                     print('🏠', end='')
             print('🟨', end='')

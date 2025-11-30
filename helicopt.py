@@ -6,14 +6,4 @@ class Helic:
         self.volume = 1
 
 
-    def helic(self):
-        pass
-
-
-    def show_hel(self):
-        pass
-
-
-    def upgrade(self):
-        pass
 
